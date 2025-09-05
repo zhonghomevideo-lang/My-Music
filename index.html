@@ -25,11 +25,11 @@
   </style>
 </head>
 <body>
-  <h1>🎬 點螢幕開啟音樂 🎬</h1>
+  <h1>🎬 點螢幕播放音樂 🎬</h1>
 
-  //<video id="player" autoplay muted playsinline>
-  //您的瀏覽器不支援 video 標籤。
-  //</video>
+  <video id="player" autoplay muted playsinline>
+  您的瀏覽器不支援 video 標籤。
+  </video>
 
   <script>
     const video = document.getElementById('player');
@@ -48,7 +48,7 @@
 
     // 手機點擊螢幕後解鎖播放（移除 muted 才有聲音）
     document.body.addEventListener('click', () => {
-      //video.muted = false; // 解除靜音
+      video.muted = false; // 解除靜音
       video.play();
     }, { once: true });
   </script>
