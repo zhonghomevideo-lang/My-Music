@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自動播放影片</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+      flex-direction: column;
+    }
+    video {
+      max-width: 100%;
+      max-height: 100vh;
+      background: black;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎬 點螢幕播放影片 🎬</h1>
+
+  <video id="player" autoplay muted playsinline>
+    您的瀏覽器不支援 video 標籤。
+  </video>
+
+  <script>
+    const video = document.getElementById('player');
+
+    // 讀取 URL 參數，例如 NFC 標籤帶入: ?video=2
+    const params = new URLSearchParams(window.location.search);
+    const videoNumber = params.get('Vid') || '001'; // 預設播放 video001
+
+    // 設定對應 MP4 檔案
+    video.src = `2025${videoNumber}.mp4`;
+
+    // 嘗試自動播放
+    video.play().catch(() => {
+      console.log("自動播放失敗，需要使用者互動");
+    });
+
+    // 手機點擊螢幕後解鎖播放（移除 muted 才有聲音）
+    document.body.addEventListener('click', () => {
+      video.muted = false; // 解除靜音
+      video.play();
+    }, { once: true });
+  </script>
+</body>
+</html>
